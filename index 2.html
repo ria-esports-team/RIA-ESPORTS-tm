@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ria Esports | Competitive Gaming Team</title>
+    <meta name="description" content="Ria Esports - Competitive Discord community for Valorant, Fortnite, CS2 and Rocket League. Thumbnails, rank carries, coaching, and optimization tweaks.">
+    <style>
+        :root {
+            --dark-blue: #0A1628;
+            --mid-blue: #0F2A4A;
+            --light-blue: #3B82F6;
+            --sky-blue: #60A5FA;
+            --ice-blue: #E0F2FE;
+            --soft-blue: #F0F7FF;
+            --soft-blue-2: #E8F3FF;
+            --white: #FFFFFF;
+            --text-dark: #0F172A;
+            --text-muted: #64748B;
+            --card-shadow: 0 10px 30px -10px rgba(10, 22, 40, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--soft-blue);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: var(--dark-blue);
+            color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--sky-blue);
+        }
+
+        nav {
+            display: flex;
+            gap: 1.8rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--sky-blue);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--light-blue);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: #2563EB;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--sky-blue);
+        }
+
+        .btn-outline:hover {
+            background: var(--sky-blue);
+            color: var(--dark-blue);
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--mid-blue) 100%);
+            color: var(--white);
+            padding: 5.5rem 1.5rem 6rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 60%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            color: var(--sky-blue);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #CBD5E1;
+            margin-bottom: 2.2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 1.5rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--dark-blue);
+            margin-bottom: 0.6rem;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        /* About */
+        .about {
+            background: var(--soft-blue-2);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+        }
+
+        .games {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-top: 1.5rem;
+        }
+
+        .game-tag {
+            background: var(--white);
+            color: var(--mid-blue);
+            padding: 0.45rem 1.1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid #BFDBFE;
+            box-shadow: 0 2px 6px rgba(59, 130, 246, 0.08);
+        }
+
+        .about-card {
+            background: linear-gradient(145deg, var(--dark-blue), var(--mid-blue));
+            color: var(--white);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .about-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--sky-blue);
+        }
+
+        .about-card ul {
+            list-style: none;
+        }
+
+        .about-card li {
+            padding: 0.55rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 1.05rem;
+        }
+
+        /* Services */
+        .services {
+            background: var(--soft-blue);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 14px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #DBEAFE;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -15px rgba(10, 22, 40, 0.18);
+            border-color: #93C5FD;
+        }
+
+        .service-icon {
+            width: 52px;
+            height: 52px;
+            background: var(--ice-blue);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            color: var(--dark-blue);
+            margin-bottom: 0.7rem;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+        }
+
+        /* How to Order / Payment */
+        .order {
+            background: var(--soft-blue-2);
+        }
+
+        .order-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.8rem;
+            margin-top: 1rem;
+        }
+
+        .step-card {
+            background: var(--white);
+            border-radius: 14px;
+            padding: 2rem 1.8rem;
+            text-align: center;
+            border: 1px solid #DBEAFE;
+            box-shadow: var(--card-shadow);
+            position: relative;
+        }
+
+        .step-number {
+            width: 42px;
+            height: 42px;
+            background: var(--light-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin: 0 auto 1.2rem;
+        }
+
+        .step-card h3 {
+            font-size: 1.2rem;
+            color: var(--dark-blue);
+            margin-bottom: 0.6rem;
+        }
+
+        .step-card p {
+            color: var(--text-muted);
+            font-size: 0.97rem;
+        }
+
+        .order-note {
+            margin-top: 2.5rem;
+            background: linear-gradient(135deg, var(--dark-blue), var(--mid-blue));
+            color: white;
+            padding: 1.8rem 2rem;
+            border-radius: 14px;
+            text-align: center;
+            font-size: 1.05rem;
+        }
+
+        .order-note strong {
+            color: var(--sky-blue);
+        }
+
+        /* CTA */
+        .cta {
+            background: linear-gradient(135deg, var(--dark-blue), var(--mid-blue));
+            color: var(--white);
+            text-align: center;
+            padding: 5rem 1.5rem;
+        }
+
+        .cta h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            color: #CBD5E1;
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-blue);
+            color: #94A3B8;
+            padding: 3rem 1.5rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .footer-logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--white);
+        }
+
+        .footer-logo span {
+            color: var(--sky-blue);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.2rem;
+        }
+
+        .social-links a {
+            color: #94A3B8;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .social-links a:hover {
+            color: var(--sky-blue);
+        }
+
+        .copyright {
+            width: 100%;
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #1E3A5F;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero {
+                padding: 4rem 1.2rem 4.5rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                ⚔️ Ria <span>Esports</span>
+            </div>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#order">How to Order</a>
+                <a href="#join">Join Us</a>
+                <a href="https://discord.gg/pQ3DT9J5f" target="_blank" class="btn btn-primary">Discord</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to <span>Ria Esports</span> 🏆</h1>
+            <p>Competitive Discord community built for players who want to improve, compete, and grow together across multiple titles.</p>
+            <div class="hero-buttons">
+                <a href="https://discord.gg/pQ3DT9J5f" target="_blank" class="btn btn-primary">🚀 Join Discord Server</a>
+                <a href="#services" class="btn btn-outline">💎 View Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>👥 About Us</h2>
+                <p>We are more than just a Discord server — we are a competitive gaming team and community.</p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-text">
+                    <h3>Who We Are 🔥</h3>
+                    <p>
+                        Ria Esports is a competitive Discord server and team focused on high-level play and player development. 
+                        Whether you're grinding ranked, preparing for tournaments, or just looking for teammates who take the game seriously, 
+                        this is the place for you.
+                    </p>
+                    <p>
+                        We bring together players from different skill levels who share the same goal: improvement and competition.
+                    </p>
+                    <div class="games">
+                        <span class="game-tag">🎯 Valorant</span>
+                        <span class="game-tag">🏗️ Fortnite</span>
+                        <span class="game-tag">🔫 CS2</span>
+                        <span class="game-tag">⚽ Rocket League</span>
+                    </div>
+                </div>
+
+                <div class="about-card">
+                    <h4>✨ What You'll Find</h4>
+                    <ul>
+                        <li>✅ Active competitive community</li>
+                        <li>✅ Team-oriented players</li>
+                        <li>✅ Tournament preparation support</li>
+                        <li>✅ Helpful and structured environment</li>
+                        <li>✅ Players who want to improve daily</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>💎 Our Services</h2>
+                <p>Professional support to help you look better, play better, and perform better.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3>Thumbnails & Editing</h3>
+                    <p>High-quality YouTube thumbnails and video editing services designed to make your content stand out and attract more viewers.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">📈</div>
+                    <h3>Rank Carries</h3>
+                    <p>Climb the ranks faster with experienced players who help you secure wins and reach your desired rank efficiently.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🎯</div>
+                    <h3>Coaching & Tournaments</h3>
+                    <p>Personalized coaching sessions and tournament support to improve your game sense, aim, and overall competitive performance.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">⚙️</div>
+                    <h3>PC Tweaks</h3>
+                    <p>Custom AMD, NVIDIA, and Windows optimization tweaks to reduce input lag, improve FPS, and get the smoothest possible experience.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🎮</div>
+                    <h3>PS5 Optimization</h3>
+                    <p>Console-side optimizations and settings guidance to maximize performance and responsiveness on PlayStation 5.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">💬</div>
+                    <h3>Community Support</h3>
+                    <p>Active Discord community ready to help with questions, team-ups, and continuous improvement across all supported games.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Order / Payment -->
+    <section class="order" id="order">
+        <div class="container">
+            <div class="section-title">
+                <h2>💳 How to Order & Pay</h2>
+                <p>Simple process — everything is handled inside our Discord server.</p>
+            </div>
+
+            <div class="order-steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Join the Discord</h3>
+                    <p>Click the Discord button and join the Ria Esports server.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Create a Ticket</h3>
+                    <p>Open a support ticket and tell us which service you want.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Pay & Get Started</h3>
+                    <p>We’ll give you payment details and start working on your order right away.</p>
+                </div>
+            </div>
+
+            <div class="order-note">
+                🔒 <strong>Important:</strong> All payments and orders are handled only through our Discord server tickets. 
+                Please do not send money outside of the ticket system.
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="join">
+        <h2>Ready to Level Up? 🚀</h2>
+        <p>Join the Ria Esports Discord server today and become part of a competitive community that actually helps you improve.</p>
+        <a href="https://discord.gg/pQ3DT9J5f" target="_blank" class="btn btn-primary" style="font-size: 1.1rem; padding: 0.9rem 2rem;">
+            💬 Join Our Discord
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                ⚔️ Ria <span>Esports</span>
+            </div>
+            <div class="social-links">
+                <a href="https://discord.gg/pQ3DT9J5f" target="_blank">💬 Discord</a>
+                <a href="https://x.com/RIAazul_esports" target="_blank">🐦 X / Twitter</a>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2026 Ria Esports. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
